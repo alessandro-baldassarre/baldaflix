@@ -1,19 +1,26 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getApiConfiguration } from "./store/homeSlice"
 import { fetchData } from "./utils/api"
 
 function App() {
-    const [movies, setMovies] = useState(null)
+    const dispatch = useDispatch()
 
-    async function data(controller) {
+    const url = useSelector((state) => state.home.url)
+
+    async function homeConfig(controller) {
 
         const movies = await fetchData(controller, "/movie/popular")
 
-        setMovies(movies.results)
+        if (movies.results) {
+            dispatch(getApiConfiguration(movies))
+        }
+
     }
 
     useEffect(() => {
         const controller = new AbortController()
-        data(controller)
+        homeConfig(controller)
 
         return () => {
             controller.abort()
@@ -21,14 +28,8 @@ function App() {
     }, [])
 
     return (
-        <div className="App">
-            {movies
-                ? movies.map((movie) => {
-                    return (
-                        <p key={movie.id} style={{ color: "white" }}>{movie.id}</p>
-                    )
-                })
-                : ""}
+        <div className="App" style={{ color: "white" }}>
+            {url?.total_pages}
         </div >
     )
 }

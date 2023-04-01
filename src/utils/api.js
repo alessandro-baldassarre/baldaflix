@@ -19,7 +19,6 @@ export const fetchData = async (controller, url, params) => {
         return data
 
     } catch (error) {
-        console.log(error)
         return error
     }
 }
