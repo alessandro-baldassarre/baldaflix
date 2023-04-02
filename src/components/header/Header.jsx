@@ -7,6 +7,7 @@ import ContentWrapper from "../contentWrapper/ContentWrapper"
 
 import "./style.scss"
 import logo from "../../assets/movix-logo.svg"
+import useWindowSize from "../../hooks/useWindowSize"
 
 const Header = () => {
     const [show, setShow] = useState("top")
@@ -14,12 +15,20 @@ const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
     const [searchInput, setSearchInput] = useState("")
     const [showSearch, setShowSearch] = useState("")
+    const { width } = useWindowSize()
     const navigate = useNavigate()
     const location = useLocation()
 
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [location])
+
+    useEffect(() => {
+        if (width > 767) {
+            setMobileMenu(false)
+
+        }
+    }, [width])
 
     const navbarScroll = () => {
         if (window.scrollY > 200) {
