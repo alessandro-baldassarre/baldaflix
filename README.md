@@ -1,3 +1,3 @@
 # baldaflix
 
-[go to the site](baldaflix.vercel.app)
+go to the site -> [baldaflix](baldaflix.vercel.app)
