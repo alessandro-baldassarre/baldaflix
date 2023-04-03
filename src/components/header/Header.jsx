@@ -6,7 +6,7 @@ import { VscChromeClose } from "react-icons/vsc"
 import ContentWrapper from "../contentWrapper/ContentWrapper"
 
 import "./style.scss"
-import logo from "../../assets/movix-logo.svg"
+import logo from "../../assets/baldaflix-logo.svg"
 import useWindowSize from "../../hooks/useWindowSize"
 
 const Header = () => {
@@ -26,7 +26,6 @@ const Header = () => {
     useEffect(() => {
         if (width > 767) {
             setMobileMenu(false)
-
         }
     }, [width])
 
