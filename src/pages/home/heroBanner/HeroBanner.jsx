@@ -40,7 +40,7 @@ const HeroBanner = () => {
 
     return (
         <section className="hero">
-            {!isLoading &&
+            {!isLoading && data &&
                 <div className="hero__bg">
                     <Img src={background} />
                 </div>
