@@ -1,40 +1,24 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import ContentWrapper from '../../../components/contentWrapper/ContentWrapper'
 import Img from '../../../components/lazyLoadImage/Img'
 import useAxiosFetch from '../../../hooks/useAxiosFetch'
-import useDebounce from '../../../hooks/useDebounce'
 import { selectImagesConfig } from '../../../store/configSlice'
 
 import "./style.scss"
 
-const HeroBanner = () => {
-    const navigate = useNavigate()
+const HeroBanner = ({ setSearchInput }) => {
 
     const [background, setBackground] = useState("")
-    const [searchInput, setSearchInput] = useState("")
 
     const imagesConfig = useSelector(selectImagesConfig)
 
     const { data, isLoading, error } = useAxiosFetch("/movie/upcoming")
 
-    const debouncedSearchInput = useDebounce(searchInput, 1000)
-
-    // useEffect(() => {
-    //     const filterData = setTimeout(() => {
-    //         //get data from api
-    //         console.log(searchInput)
-    //     }, 2000)
-    //
-    //     return () => clearTimeout(filterData)
-    //
-    // }, [searchInput])
-
     useEffect(() => {
         const random = Math.floor(Math.random() * 20)
         const upcomingMoviesBg = data?.results?.[random].backdrop_path
-        const baseImageUrl = imagesConfig.secure_base_url + "original"
+        const baseImageUrl = imagesConfig?.secure_base_url + "original"
         setBackground(baseImageUrl + upcomingMoviesBg)
     }, [data])
 
