@@ -8,11 +8,12 @@ const headers = {
     Authorization: "Bearer " + TMDB_TOKEN,
 };
 
-export const fetchData = async (controller, url) => {
+export const fetchData = async (controller, url, params) => {
     try {
         const { data } = await axios.get(BASE_URL + url, {
             headers,
-            signal: controller.signal
+            signal: controller.signal,
+            params
         })
 
         return data
