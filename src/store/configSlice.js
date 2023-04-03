@@ -6,7 +6,7 @@ const initialState = {
         images: {},
         change_keys: []
     },
-    genres: {}
+    genres: []
 }
 
 export const configSlice = createSlice({
@@ -25,4 +25,6 @@ export const configSlice = createSlice({
 export const { getApiConfiguration, getGenres } = configSlice.actions
 
 export const selectImagesConfig = (state) => state.config.apiConfig.images
+export const selectGenres = (state) => state.config.genres
+
 export default configSlice.reducer

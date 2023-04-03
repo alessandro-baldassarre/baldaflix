@@ -9,15 +9,21 @@ import Details from "./pages/details/Details"
 import Explore from "./pages/explore/Explore"
 import Home from "./pages/home/Home"
 import SearchResult from "./pages/searchResult/SearchResult"
-import { getApiConfiguration } from "./store/configSlice"
+import { getApiConfiguration, getGenres } from "./store/configSlice"
 
 function App() {
     const dispatch = useDispatch()
     const { data: config } = useAxiosFetch("/configuration")
+    const { data: { genres: movieGenres } } = useAxiosFetch("/genre/movie/list")
+    const { data: { genres: tvGenres } } = useAxiosFetch("/genre/tv/list")
 
     useEffect(() => {
         dispatch(getApiConfiguration(config))
-    }, [config])
+
+        if (movieGenres && movieGenres.length > 0 && tvGenres && tvGenres.length > 0) {
+            dispatch(getGenres([...movieGenres, ...tvGenres]))
+        }
+    }, [config, movieGenres, tvGenres])
 
     return (
         <BrowserRouter>
