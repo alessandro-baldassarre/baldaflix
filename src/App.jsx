@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Footer from "./components/footer/Footer"
 import Header from "./components/header/Header"
 import useAxiosFetch from "./hooks/useAxiosFetch"
-import NotFound from "./pages/404/NotFound"
+import PageNotFound from "./pages/404/PageNotFound"
 import Details from "./pages/details/Details"
 import Explore from "./pages/explore/Explore"
 import Home from "./pages/home/Home"
@@ -31,7 +31,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/:mediaType/:id" element={<Details />} />
                 <Route path="/explore/:mediaType" element={<Explore />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer />
         </BrowserRouter>
