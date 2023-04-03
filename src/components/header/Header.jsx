@@ -13,8 +13,6 @@ const Header = () => {
     const [show, setShow] = useState("top")
     const [lastScrollY, setLastScroolY] = useState(0)
     const [mobileMenu, setMobileMenu] = useState(false)
-    const [searchInput, setSearchInput] = useState("")
-    const [showSearch, setShowSearch] = useState("")
     const { width } = useWindowSize()
     const navigate = useNavigate()
     const location = useLocation()
@@ -51,15 +49,6 @@ const Header = () => {
 
     }, [lastScrollY])
 
-    const openSearch = () => {
-        setMobileMenu(false)
-        setShowSearch(true)
-    }
-
-    const openMobileMenu = () => {
-        setShowSearch(false)
-        setMobileMenu(true)
-    }
 
     const navigationHandler = (type) => {
         if (type === "movie") {
@@ -82,27 +71,13 @@ const Header = () => {
                 <ul className="menuItems">
                     <li className="menuItem" onClick={() => navigationHandler("movie")}>Movies</li>
                     <li className="menuItem" onClick={() => navigationHandler("tv")}>TV Show</li>
-                    <li className="menuItem">
-                        <HiOutlineSearch onClick={openSearch} />
-                    </li>
                 </ul>
 
                 <div className="mobileMenuItems">
-                    <HiOutlineSearch onClick={openSearch} />
-                    {mobileMenu ? <VscChromeClose onClick={() => setMobileMenu(false)} /> : <SlMenu onClick={openMobileMenu} />}
+                    {mobileMenu ? <VscChromeClose onClick={() => setMobileMenu(false)} /> : <SlMenu onClick={() => setMobileMenu(true)} />}
                 </div>
             </ContentWrapper>
 
-            {showSearch &&
-                <div className="searchBar">
-                    <ContentWrapper>
-                        <div className="searchInput" >
-                            <input type="text" placeholder="Search for a movie or TV show..." onChange={(ev) => setSearchInput(ev.target.value)} />
-                            <VscChromeClose onClick={() => { setShowSearch(false) }} />
-                        </div>
-                    </ContentWrapper>
-                </div>
-            }
 
         </header>
     )
