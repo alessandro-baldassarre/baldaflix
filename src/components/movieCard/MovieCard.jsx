@@ -26,10 +26,10 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
             <div className="posterBlock">
                 <Img className="posterImg" src={posterUrl} />
                 {!fromSearch && (
-                    <React.Fragment>
+                    <>
                         <CircleRating rating={data.vote_average.toFixed(1)} />
                         <Genres data={data.genre_ids.slice(0, 2)} />
-                    </React.Fragment>
+                    </>
                 )}
             </div>
             <div className="textBlock">
