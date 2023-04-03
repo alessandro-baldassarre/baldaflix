@@ -1,6 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import useAxiosFetch from '../../hooks/useAxiosFetch'
+import Recommendation from './carousels/Recommendation'
+import Similar from './carousels/Similar'
 import Cast from './cast/Cast'
 import DetailsBanner from './detailsBanner/DetailsBanner'
 
@@ -17,6 +19,8 @@ const Details = () => {
             <DetailsBanner video={videos?.results?.[0]} crew={credits?.crew} />
             <Cast data={credits.cast} isLoading={isCreditsLoading} />
             <VideosSection data={videos} isLoading={isVideosLoading} />
+            <Similar mediaType={mediaType} id={id} />
+            <Recommendation mediaType={mediaType} id={id} />
         </div>
     )
 }
