@@ -20,7 +20,7 @@ function App() {
     useEffect(() => {
         dispatch(getApiConfiguration(config))
 
-        if (movieGenres && movieGenres.length > 0 && tvGenres && tvGenres.length > 0) {
+        if (movieGenres?.length > 0 && tvGenres?.length > 0) {
             dispatch(getGenres([...movieGenres, ...tvGenres]))
         }
     }, [config, movieGenres, tvGenres])
